@@ -7,6 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How To Set-UP
+
+- Step-1: Download The Laravel-CRUD Repositorie.
+- Step-2: Creat a Database.
+- Step-3: Emport Staff.sql file in Database.
+- Step-4: Open Laravel-CRUD file and Edit (.ENV).
+- Step-5: Change the DB_DATABASE to Created Database Name.
+- Step-6: Open Power-Shell or Git Bash.
+- Step-7: Type: php artisan migrate.
+- Step-8: Type: php artisan serve.
+- Step-8: Then The File Will Run or Live.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
