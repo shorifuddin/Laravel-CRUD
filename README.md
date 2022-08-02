@@ -17,7 +17,7 @@
 - Step-6: Open Power-Shell or Git Bash.
 - Step-7: Type: php artisan migrate.
 - Step-8: Type: php artisan serve.
-- Step-8: Then The File Will Run or Live.
+- Step-9: Then The File Will Run or Live.
 
 ## About Laravel
 
