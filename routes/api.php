@@ -21,4 +21,6 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 Route::resource('product', ProductController::class);
+Route::get('product/search/{brand}', [ProductController::class, 'search'])->name('product.search');
+
 
