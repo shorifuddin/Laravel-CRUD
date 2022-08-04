@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\StaffRequest;
 
 class StaffController extends Controller
 {
@@ -22,20 +23,9 @@ class StaffController extends Controller
         return view('backend.user.adduser');
     }
 
-    public function insert(Request $request)
+    public function insert(StaffRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'phone' => 'required|max:255',
-            'username' => 'required|unique:Staff|max:255',
-            'email' => 'required|unique:Staff|max:255',
-            'datebirth' => 'required|max:255',
-            'gender' => 'required|max:255',
-            'skill' => 'required|max:255',
-            'category' => 'required|max:255',
-            'about' => 'required|max:255',
-            'image' => 'required|max:255',
-        ]);
+        $request->validated();
 
         // return $request;
         $image_name = '';
@@ -108,20 +98,10 @@ class StaffController extends Controller
          return view('backend.user.edituser',compact('data'));
     }
 
-    public function update(Request $request, $id )
+    public function update(StaffRequest $request, $id )
     {
         // return $request;
-        $request->validate([
-            'name' => 'required|max:255',
-            'phone' => 'required|max:255',
-            'username' => 'required|unique:Staff|max:255',
-            'email' => 'required|unique:Staff|max:255',
-            'datebirth' => 'required|max:255',
-            'gender' => 'required|max:255',
-            'skill' => 'required|max:255',
-            'category' => 'required|max:255',
-            'about' => 'required|max:255',
-        ]);
+        $request->validated();
 
         $updatestaff = Staff::where('staff_id', $id)->first();
 

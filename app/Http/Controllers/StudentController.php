@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use App\Http\Requests\StudentRequest;
 class StudentController extends Controller
 {
     /**
@@ -35,10 +35,10 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         // return $request;
-
+        $request->validated();
         $insert=Student::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -84,9 +84,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
-        //  return $request;
+        $request->validated();
+
         $student->name = $request->name;
         $student->email = $request->email;
         $student->phone = $request->phone;
@@ -96,7 +97,7 @@ class StudentController extends Controller
         if($student->update())
         {
             Session::flash('success','Value');
-            return redirect()->route('student.index');
+            return redirect()->back();
         }
         Session::flash('error','Value');
         return redirect()->back();
@@ -110,7 +111,7 @@ class StudentController extends Controller
      */
     public function softdelete(Student $student)
     {
-        return $student;
+        // return $student;
         $student->status = 0;
         $student->update();
 
