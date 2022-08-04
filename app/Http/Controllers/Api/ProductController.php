@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -18,8 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $alldata = Product::all();
-        return view('backend.product.all',compact('alldata'));
+        return Product::all();
+        // $alldata = Product::all();
+        // return view('backend.product.all',compact('alldata'));
     }
 
     /**
@@ -40,21 +42,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
-        $insert=Product::create([
-            'name' => $request->name,
-            'brand' => $request->brand,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
+        $request->validate([
+            'name' => 'required',
+            'brand' => 'required',
+            'price' => 'required',
         ]);
+        Product::create($request->all());
 
-        if($insert)
-        {
-            Session::flash('success','Value');
-            return redirect()->route('product.index');
-        }
-        Session::flash('error','Value');
-        return redirect()->back();
+        // $insert=Product::create([
+        //     'name' => $request->name,
+        //     'brand' => $request->brand,
+        //     'price' => $request->price,
+        //     'quantity' => $request->quantity,
+        // ]);
+
+        // if($insert)
+        // {
+        //     Session::flash('success','Value');
+        //     return redirect()->route('product.index');
+        // }
+        // Session::flash('error','Value');
+        // return redirect()->back();
     }
 
     /**
@@ -63,9 +71,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product )
     {
-        return view('backend.product.view',compact('product'));
+        return $product;
+        // return view('backend.product.view',compact('product'));
     }
 
     /**
@@ -89,19 +98,22 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         // return $request;
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->brand = $request->brand;
-        $product->quantity = $request->quantity;
-        $product->update();
 
-        if($product->update())
-        {
-            Session::flash('success','Value');
-            return redirect()->route('product.index');
-        }
-        Session::flash('error','Value');
-        return redirect()->back();
+        $product->update($request->all());
+
+        // $product->name = $request->name;
+        // $product->price = $request->price;
+        // $product->brand = $request->brand;
+        // $product->quantity = $request->quantity;
+        // $product->update();
+
+        // if($product->update())
+        // {
+        //     Session::flash('success','Value');
+        //     return redirect()->route('product.index');
+        // }
+        // Session::flash('error','Value');
+        // return redirect()->back();
     }
 
     /**
@@ -114,5 +126,18 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('product.index');
+    }
+
+     /**
+     * search the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Product $product)
+    {
+
+        return $product;
+        // return view('backend.product.view',compact('product'));
     }
 }
