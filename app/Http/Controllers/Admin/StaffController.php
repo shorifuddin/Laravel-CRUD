@@ -37,6 +37,7 @@ class StaffController extends Controller
             'image' => 'required|max:255',
         ]);
 
+        // return $request;
         $image_name = '';
         if ($request->hasFile('image'))
         {
@@ -44,6 +45,20 @@ class StaffController extends Controller
             $image_name = time() . '_' . rand(100000, 10000000) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(720, 720)->save('upload/staff/' . $image_name);
         }
+
+        // if($request->file('multi_image')){
+        //     $gallerys = $request->file('multi_image');
+        //     foreach($gallerys as $gallery){
+        //         $gallery_name = 'pro' . '_' . rand(100000, 10000000) . '.' . $gallery->getClientOriginalExtension();
+        //         Image::make($gallery)->resize(720, 720)->save('upload/staff/' . $gallery_name);
+        //         $data[] = $gallery_name;
+        //     }
+        // }
+        // else{
+        //     $data[] = '';
+        // }
+
+        // return $request;
 
         $insert = Staff::insert([
             'name' => $request->name,
@@ -57,6 +72,7 @@ class StaffController extends Controller
             'category' => $request->category,
             'about' => $request->about,
             'image' => $image_name,
+            // 'multi_image' => implode(',', $data),
             'slug' => uniqid(),
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
@@ -66,21 +82,23 @@ class StaffController extends Controller
             Session::flash('success','Value');
             return redirect()->route('alluser');
         }
-            Session::flash('error','Value');
-            return redirect()->back();
+        Session::flash('error','Value');
+        return redirect()->back();
 
 
     }
 
     public function all()
     {
+
         $alldata = Staff::where('status',1)->orderBy('staff_id','DESC')->get();
         return view('backend.user.alluser',compact('alldata'));
     }
 
-    public function view($id)
+    public function view(Staff $key)
     {
-        $data=Staff::where('staff_id',$id)->firstOrFail();
+        dd($key);
+        // $data=Staff::where('staff_id',$id)->firstOrFail();
         return view('backend.user.viewuser',compact('data'));
     }
 

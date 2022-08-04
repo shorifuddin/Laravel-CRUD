@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::group(['prefix' => 'dashboard'], function(){
         Route::get('restore/{id}', [StaffController::class, 'restore'])->name('restore');
         Route::get('delete/{id}', [StaffController::class, 'delete'])->name('deleteuser');
     });
+
+    // <<===== StudentController ROUTE LIST ======>>
+    Route::resource('student', StudentController::class);
 
 });
 require __DIR__.'/auth.php';

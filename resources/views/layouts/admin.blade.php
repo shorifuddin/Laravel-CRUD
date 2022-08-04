@@ -129,7 +129,7 @@
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle header-profile-user" src="{{asset('backend')}}/assets/images/users/avatar-1.jpg"
                                     alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span>
+                                <span class="d-none d-xl-inline-block ms-1" key="t-henry"></span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -171,6 +171,26 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ route('alluser') }}" key="t-products">ALL User's</a></li>
                                     <li><a href="{{ route('adduser') }}" key="t-product-detail">ADD User's</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-ecommerce">Student</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('student.index') }}" key="t-products">ALL Students</a></li>
+                                    <li><a href="{{ route('student.create') }}" key="t-product-detail">ADD Student</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-group"></i>
+                                    <span key="t-ecommerce">Product</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('product.index') }}" key="t-products">ALL Product</a></li>
+                                    <li><a href="{{ route('product.create') }}" key="t-product-detail">ADD Product</a></li>
                                 </ul>
                             </li>
                             <li>
