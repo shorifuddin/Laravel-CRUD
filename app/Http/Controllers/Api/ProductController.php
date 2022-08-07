@@ -42,6 +42,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        return $request;
         $request->validate([
             'name' => 'required',
             'brand' => 'required',
@@ -73,6 +74,7 @@ class ProductController extends Controller
      */
     public function show(Product $product )
     {
+
         return $product;
         // return view('backend.product.view',compact('product'));
     }

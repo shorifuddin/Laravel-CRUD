@@ -10,7 +10,7 @@
                     <div class="d-flex flex-wrap">
                         <div class="me-3">
                             <p class="text-muted mb-2">Total Post</p>
-                            <h5 class="mb-0">120</h5>
+                            <h5 class="mb-0">5465</h5>
                         </div>
 
                         <div class="avatar-sm ms-auto">

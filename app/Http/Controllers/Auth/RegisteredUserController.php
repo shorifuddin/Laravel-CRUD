@@ -48,7 +48,9 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        $token = $user->createToken('Token')->accessToken;
+        // return $token;
+        return view ('backend.admin.index',compact('token'));
+        // return redirect(RouteServiceProvider::HOME,compact('token'));
     }
 }
