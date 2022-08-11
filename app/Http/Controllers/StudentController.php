@@ -6,6 +6,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\StudentUpdateRequest;
 class StudentController extends Controller
 {
     /**
@@ -84,7 +85,7 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(StudentRequest $request, Student $student)
+    public function update(StudentUpdateRequest $request, Student $student)
     {
         $request->validated();
 
@@ -97,7 +98,7 @@ class StudentController extends Controller
         if($student->update())
         {
             Session::flash('success','Value');
-            return redirect()->back();
+            return redirect()->route('student.index');
         }
         Session::flash('error','Value');
         return redirect()->back();

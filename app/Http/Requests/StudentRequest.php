@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentRequest extends FormRequest
 {
@@ -26,10 +27,11 @@ class StudentRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'phone' => 'required|max:255',
-            'subj' => 'required|unique:Students|max:255',
+            'subj' => 'required|max:255',
             'email' => 'required|unique:Students|max:255',
         ];
     }
+
 
     public function messages()
     {

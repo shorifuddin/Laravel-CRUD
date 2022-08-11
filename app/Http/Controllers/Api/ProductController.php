@@ -48,6 +48,7 @@ class ProductController extends Controller
             'brand' => 'required',
             'price' => 'required',
         ]);
+
         Product::create($request->all());
 
         // $insert=Product::create([

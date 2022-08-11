@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         $token = $user->createToken('Token')->accessToken;
-        // return $token;
+        return $token;
         return view ('backend.admin.index',compact('token'));
         // return redirect(RouteServiceProvider::HOME,compact('token'));
     }
